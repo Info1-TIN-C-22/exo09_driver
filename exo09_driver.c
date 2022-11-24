@@ -30,8 +30,18 @@ volatile uint8_t p1out = 0;
  *   BIT1:   Switch sensor read left, 1=contact with obstacle
  *   BIT0:   Switch sensor front left, 1=contact with obstacle
  */
-
 volatile uint8_t p1in = 0;
+
+
+// Global constants
+const uint8_t BIT7 = 0x80;
+const uint8_t BIT6 = 0x40;
+const uint8_t BIT5 = 0x20;
+const uint8_t BIT4 = 0x10;
+const uint8_t BIT3 = 0x08;
+const uint8_t BIT2 = 0x04;
+const uint8_t BIT1 = 0x02;
+const uint8_t BIT0 = 0x01;
 
 
 // Wheels selection 
@@ -58,15 +68,15 @@ typedef enum
  */
 // p1out register
 uint8_t wheel_speed_get(void);
-void    wheel_speed_set(uint8_t speed);
-bool    wheel_motor_get(Wheels_t wheel);
-void    wheel_motor_set(Wheels_t wheel, bool on);
+void wheel_speed_set(uint8_t speed);
+bool wheel_motor_get(Wheels_t wheel);
+void wheel_motor_set(Wheels_t wheel, bool on);
 Direction_t wheel_direction_get(Wheels_t wheel);
-void    wheel_direction_set(Wheels_t wheel, Direction_t dir);
+void wheel_direction_set(Wheels_t wheel, Direction_t dir);
 
 // p1in register
-bool    sensor_optical_get(OpticalSensors_t sensor);
-bool    sensor_switch_get(SwitchSensors_t sensor);
+bool sensor_optical_get(OpticalSensors_t sensor);
+bool sensor_switch_get(SwitchSensors_t sensor);
 
 /*
  * Test motor & sensor driver
