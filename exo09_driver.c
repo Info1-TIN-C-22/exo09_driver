@@ -2,6 +2,7 @@
 /*
  * Test Robot motor & sensor driver
  * your.name@here.please
+ * TO COMPILE: gcc -g -Wall -Wextra exo09_driver.c -o exo09_driver
  */
 
 #include <stdio.h>
@@ -11,7 +12,25 @@
 /*
  * Global variables
  */
+ /* p1out:
+ *   BIT7-4: Speed,  default 0, [0..15)
+ *   BIT3:   Direction right wheel, default 0, 0=Forward
+ *   BIT2:   Motor right wheel, default 0, 1=On
+ *   BIT1:   Direction left wheel, default 0, 0=Forward
+ *   BIT0:   Motor left wheel, default 0, 1=On
+ */
 volatile uint8_t p1out = 0;
+
+ /* p1in:
+ *   BIT7-6: Not used (always read 0b00
+ *   BIT5:   Optical sensor left, 1=obstacle near (< 2 cm)
+ *   BIT4:   Optical sensor right, 1=obstacle near (< 2 cm)
+ *   BIT3:   Switch sensor read right, 1=contact with obstacle
+ *   BIT2:   Switch sensor front right, 1=contact with obstacle
+ *   BIT1:   Switch sensor read left, 1=contact with obstacle
+ *   BIT0:   Switch sensor front left, 1=contact with obstacle
+ */
+
 volatile uint8_t p1in = 0;
 
 
@@ -51,6 +70,9 @@ bool    sensor_switch_get(SwitchSensors_t sensor);
 
 /*
  * Test motor & sensor driver
+  * 
+ * 
+ * 
  * @return Always 0
  */
 int main(void)
@@ -58,10 +80,11 @@ int main(void)
 	// Merci d'écrire au moins 2 tests pour vérifier vos fonctions 
 	// par example: 
 //	p1out = 0xA0;
-//	printf("speed: %hhu\n", wheel_speed_get());
+//	printf("p1out: 0x%02X, speed: %hhu\n", p1out, wheel_speed_get());
 
+//	p1out = 0x0F;
 //  wheel_speed_set(7);
-//	printf("speed: %hhu\n", wheel_speed_get());
+//	printf("p1out: 0x%02X, speed: %hhu\n", piout, wheel_speed_get());
 
 	return 0;
 }
